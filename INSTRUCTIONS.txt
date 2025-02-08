@@ -1,0 +1,93 @@
+##########
+# NOTES ##
+##########
+
+- "root directory" is your Black Ops 3 install ( example : C:\Program Files (x86)\Steam\SteamApps\common\Call of Duty Black Ops III )
+- Troubleshooting steps can be found at the bottom of this file
+
+#################
+# WARNING ##
+#################
+
+- If you have Madgaz's VERRUCKT (DLC5 ZOMBIE CHRONICLES) model pack installed, you will have duplicate GDT's issues and your map will not compile!
+- This is easy to fix! Simply DO NOT copy the 'model_export' and 'source_data' folders. Since you already have the Verruckt models, you don't need these.
+
+##########################################################
+# 			INSTRUCTIONS			 #
+##########################################################
+
+##########
+# STEP 1 #
+##########
+
+- Open the download, and copy all the files to your root directory. (See above note about Madgaz's model packs)
+
+- This will add all the models, textures, scripts, and prefabs that you need to your mod tools.
+
+##########
+# STEP 2 #
+##########
+
+- Open YOURMAPNAME.gsc
+
+- find this line :
+
+	#using scripts\zm\zm_usermap;
+
+- add this underneath :
+
+	#using scripts\zm\zm_perk_poster_challenge;
+
+##########
+# STEP 3 #
+##########
+
+- Go to your map folder ( right click your map in launcher and select "Open Map Folder" )
+
+- open the "zone_source" folder
+
+- open YOURMAPNAME.zone
+
+- find these lines:
+
+	scriptparsetree,scripts/zm/YOURMAPNAME.gsc
+	scriptparsetree,scripts/zm/YOURMAPNAME.csc
+
+- add this directly underneath
+
+	scriptparsetree,scripts/zm/zm_perk_poster_challenge.gsc
+
+##########
+# STEP 4 #
+##########
+
+- Open your map in radiant
+- In the Prefab Browser, navigate to the 'perk_poster_prefabs'
+- Place at least one poster for each perk included. (Juggernog, Quick Revive, Double Tap, Speed Cola)
+- Then place as many perk posters as you like through your map. (I recommend 4 of each poster, but there is (theoretically) no limit)
+- Compile your map.
+
+- The script will randomly choose one of each type of poster to keep in your map, 
+  when any player finds and shoots all four posters, the perk limit will go up by one.
+
+- The prefabs are located at - map_source/_prefabs/perk_poster_prefabs
+
+
+##########################################################
+# 			TROUBLESHOOTING			 #
+##########################################################
+
+Q : The perk limit is not increasing even after finding and shooting the posters?
+A : You likely have not added the minimum of one of each type of perk poster to your map.
+
+Q : I'm getting "Error linking script 'scripts/zm/YOURMAPNAME.gsc'" error message when compiling?
+A : You have not linked the .zone file properly. Go back to Step #3.
+
+Q : All the posters are still in my map and are not reacting to being shot?
+A : You have not added the script to your .gsc file properly. Go back to Step #2.
+
+Q : I get conflict/duplicate GDT errors when I build my map? I can no longer open APE?
+A : If you are using Madgaz's Verruckt pack (or anyone else's or ported them yourself), you already have the posters included. Remove the GDT file included in this pack found at 'source_data\p7_zm_asylum_perk_posters.gdt'
+
+
+Happy modding!
